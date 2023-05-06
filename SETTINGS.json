@@ -1,9 +1,0 @@
-{
-    "USER_LOGIN": { "admin": "passwd" },
-    "PORT": 8000,
-    "TINKERFORGE": {
-        "IP": "192.168.178.36",
-        "PORT": 4223,
-        "UID": "EGU"
-    }
-}

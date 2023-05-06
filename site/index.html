@@ -1,0 +1,134 @@
+<html data-bs-color-scheme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/css/bootstrap-blackbox.min.css" rel="stylesheet">
+    <link href="/icons/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 400px;
+            padding: 0 5px;
+            margin-left: 15px;
+            margin-right: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-center container-fluid">
+        <div class="btn-group btn-group-lg text-center">
+            <a href="#" class="btn btn-primary">MAIN</a>
+            <a href="#" class="btn btn-primary">SCENES</a>
+            <a href="#" class="btn btn-primary">ABOUT</a>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center" id="faders">
+        <!--ALL SLIDERS - JS creation-->
+    </div>
+    <div class="position-absolute bottom-0 start-0">
+        <!--BOTTOM LEFT-->
+        b left
+    </div>
+
+    <div class="position-absolute bottom-0 end-0">
+        <!--BOTTOM RIGHT-->
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <textarea style="height: 400px;width: 500px;" class="form-control">Notizen</textarea>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <br><br><br><br><br><br><br>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><b>FADE OUT</b> &nbsp; IN</span>
+                                            <input type="number" style="width: 80px;" class="form-control">
+                                            <span class="input-group-text">SECS</span>
+                                            <button class="btn-primary">EXEC</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><b>FADE IN</b> &nbsp; IN</span>
+                                            <input type="number" style="width: 80px;" class="form-control">
+                                            <span class="input-group-text">SECS TO</span>
+                                            <input type="number" style="width: 80px;" max="100" min="0" value="50" class="form-control">
+                                            <span class="input-group-text">%</span>
+                                            <button class="btn-primary">EXEC</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                            <input type="number" style="width: 80px;" max="100" min="0" value="50" class="form-control">
+                                            <span class="input-group-text">%</span>
+                                            <button class="btn-primary">EXEC</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                            <input type="number" style="width: 80px;" max="100" min="0" value="50" class="form-control">
+                                            <span class="input-group-text">%</span>
+                                            <button class="btn-primary">EXEC</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                            <input value="RANDOM" class="form-control" disabled>
+                                            <span class="input-group-text">%</span>
+                                            <button class="btn-primary">EXEC</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="btn-group btn-group" role="group"
+                                            aria-label="Vertical button group">
+                                            <button class="btn btn-danger">BLACKOUT</button>
+                                            <button class="btn btn-outline-light">FLASH</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <input type="range" class="input-range" orient="vertical" min="0" max="1000" value="0"
+                            id="fader_master">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script src="/site/script.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/js/darkmode.min.js"></script>
+
+</html>

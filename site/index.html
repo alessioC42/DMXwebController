@@ -36,7 +36,7 @@
     <div class="position-absolute top-0 start-0">
         <div class="btn-group-vertical btn-group-lg text-center" style="margin: 5px;">
             <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
-            <button class="btn btn-primary" onclick="exitFullScreen()" data-bs-toggle="modal" data-bs-target="#sceneEditModal">SCENES</button>
+            <button class="btn btn-primary" onclick="exitFullScreen();" data-bs-toggle="modal" data-bs-target="#sceneEditModal">SCENES</button>
         </div>
     </div>
 
@@ -120,6 +120,7 @@
                                             aria-label="Vertical button group">
                                             <button class="btn btn-danger">BLACKOUT</button>
                                             <button class="btn btn-outline-light">FLASH</button>
+                                            <button onclick="update()" class="btn btn-primary">UPDATE(DEBUG)</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -150,7 +151,7 @@
                         <tr>
                             <td>
                                 <div class="input-group">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" aria-label="Default select example" id="selectedSceneEdit">
                                         <option value="0">SCENE 1</option>
                                         <option value="1">SCENE 2</option>
                                         <option value="2">SCENE 3</option>
@@ -179,7 +180,6 @@
             <div id="sceneConfig_Faders">
 
             </div>
-            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

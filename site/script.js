@@ -3,6 +3,7 @@ const MASTER = document.getElementById("fader_master");
 var normalFaders = [];
 var normalFadersOUT = [];
 var sceneFaders = [];
+var sceneConfigFaders = [];
 var scenes = [];
 
 for (let i = 0; i < 24; i++) {
@@ -20,6 +21,12 @@ for (let i = 0; i < 24; i++) {
 for (let i = 0; i < 10; i++) {
     sceneFaders.push(
         document.getElementById(`SCENE${i}`)
+    )
+}
+
+for (let i = 0; i < 10; i++) {
+    sceneConfigFaders.push(
+        document.getElementById(`CH_CONFIG_SCENES${i}`)
     )
 }
 
@@ -78,5 +85,14 @@ function sendFaders(state) {
         normalFadersOUT[i].value = state[i];
     }
 }
+
+
+function loadSceneEditorFaders() {
+    let selectedScene = scenes[Number(document.getElementById("selectedSceneEdit").value)];
+    for (let i = 0; i < sceneConfigFaders.length; i++) {
+        sceneConfigFaders[i].value = selectedScene[i]
+    }
+}
+
 
 //setInterval(update, 50)

@@ -6,7 +6,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap-dark-5/dist/
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/js-dark', express.static(__dirname + '/node_modules/bootstrap-dark-5/dist/js'));
 app.use('/icons', express.static(__dirname + '/node_modules/bootstrap-icons/font'));
-
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'))
 
 app.get("/", (_req, res) => {
     res.sendFile(__dirname + "/site/index.html");

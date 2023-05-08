@@ -15,9 +15,7 @@ function toggleFullScreen() {
 }
 
 function exitFullScreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
+    
 }
 
 document.addEventListener('fullscreenchange', () => {
@@ -50,6 +48,9 @@ function createCHFaders() {
         input.setAttribute("id", `CH${i}`);
         input.style.marginLeft = "3px"
         input.style.marginRight = "5px"
+        input.addEventListener("input", (_ev) => {
+            update();
+        });
         fadercontainer.appendChild(input);
 
         let label = document.createElement("label");
@@ -88,6 +89,10 @@ function createSCENEFaders() {
         input.setAttribute("step", "0.01");
         input.setAttribute("value", "0");
         input.setAttribute("id", `SCENE${i}`);
+
+        input.addEventListener("input", (_ev) => {
+            update();
+        });
 
         input.style.marginRight = "7px";
         input.style.marginLeft = "10px";
@@ -128,6 +133,12 @@ function createSCENEconfigFaders() {
         output.setAttribute("min", "0");
         output.setAttribute("max", "255");
         output.setAttribute("value", "0");
+
+        output.addEventListener("input", (_ev) => {
+            updateSceneConfiguration();
+            update();
+        });
+
         output.setAttribute("id", `CH_CONFIG_SCENES${i}`);
         output.style.marginLeft = "14px";
         output.style.marginRight = "4px";
@@ -144,3 +155,7 @@ function createSCENEconfigFaders() {
 createCHFaders();
 createSCENEFaders();
 createSCENEconfigFaders();
+
+document.getElementById("fader_master").addEventListener("input", (_ev) => {
+    update();
+});

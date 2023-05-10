@@ -1,0 +1,11 @@
+{
+    "usepwd": true,
+    "logins": {
+        "username": "passwd"
+    },
+    "tinkerforge": {
+        "host":"localhost",
+        "port": 4223,
+        "uid":"XYZ"
+    }
+}

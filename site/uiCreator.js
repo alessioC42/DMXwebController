@@ -14,10 +14,6 @@ function toggleFullScreen() {
     }
 }
 
-function exitFullScreen() {
-    
-}
-
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         document.documentElement.style.zoom = '100%';

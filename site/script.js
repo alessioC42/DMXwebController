@@ -1,22 +1,31 @@
-var socket = io();
+const socket = io();
+const bs5Utils = new Bs5Utils();
 
+let statuselem = document.getElementById("onlinestatus");
 socket.on('connect', () => {
-    console.log("conected to socketio")
+    bs5Utils.Snack.show('success', 'connected to server', delay = 1500, dismissible = true);
+    statuselem.style.color = "green";
+    statuselem.innerHTML = `online &nbsp;<i class="bi bi-ethernet"></i>`;
 });
 
 socket.on('disconnect', () => {
-    console.log("disconnected from socketio")
+    bs5Utils.Snack.show('danger', 'lost connection to server.', delay = 1500, dismissible = true);
+    statuselem.style.color = "red";
+    statuselem.innerHTML = `offline &nbsp;<i class="bi bi-ethernet"></i>`;
 });
 
-socket.on("updateAllStates", (data) => {
-    for (let i = 0; i < normalFadersOUT.length; i++) {
-        normalFadersOUT[i].value = data.state[i]
-    }
-    for (let i = 0; i < normalFaders.length; i++) {
-        normalFaders[i].value = data.faderValues[i];
-    }
-    scenes = data.scenes.slice();
-    MASTER.value = data.master;
+socket.on('disabled', () => {
+    bs5Utils.Snack.show('warning', 'other user logged in', delay = 1500, dismissible = true);
+    statuselem.style.color = "darkorange";
+    statuselem.innerHTML = `in quene &nbsp;<i class="bi bi-ethernet"></i>`;
+    MASTER.value = 0;
+});
+
+socket.on('reenabled', () => {
+    bs5Utils.Snack.show('success', 'other user disconnected', delay = 1500, dismissible = true);
+    statuselem.style.color = "green";
+    statuselem.innerHTML = `online &nbsp;<i class="bi bi-ethernet"></i>`;
+    update();
 });
 
 const MASTER = document.getElementById("fader_master");
@@ -115,7 +124,7 @@ function getMaxSceneFaderValues() {
 
 var lastState = []
 
-function sendFaders(state, normalFaderValues) {
+function sendFaders(state) {
 
     var sameArray = (lastState.length == state.length) && lastState.every(function (element, index) {
         return element === state[index];
@@ -126,12 +135,8 @@ function sendFaders(state, normalFaderValues) {
 
         socket.emit("newState", {
             "state": state,
-            "scenes": scenes,
-            "faderValues": normalFaderValues,
-            "master": MASTER.value
         });
 
-        console.log(state);
         for (let i = 0; i < state.length; i++) {
             normalFadersOUT[i].value = state[i];
         }

@@ -1,3 +1,24 @@
+var socket = io();
+
+socket.on('connect', () => {
+    console.log("conected to socketio")
+});
+
+socket.on('disconnect', () => {
+    console.log("disconnected from socketio")
+});
+
+socket.on("updateAllStates", (data) => {
+    for (let i = 0; i < normalFadersOUT.length; i++) {
+        normalFadersOUT[i].value = data.state[i]
+    }
+    for (let i = 0; i < normalFaders.length; i++) {
+        normalFaders[i].value = data.faderValues[i];
+    }
+    scenes = data.scenes.slice();
+    MASTER.value = data.master;
+});
+
 const MASTER = document.getElementById("fader_master");
 
 var normalFaders = [];
@@ -6,7 +27,7 @@ var sceneFaders = [];
 var sceneConfigFaders = [];
 var scenes = [];
 var state_blackout = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var state_flash = [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255]
+var state_flash = [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
 
 for (let i = 0; i < 24; i++) {
     normalFaders.push(
@@ -41,13 +62,13 @@ function update() {
         let selectedScene = scenes[Number(document.getElementById("selectedSceneEdit").value)];
         sendFaders(selectedScene);
     } else {
-        switch (document.querySelector("input[type='radio'][name='specialmode']:checked").value) {
-            case "none":
-                var normalFaderValues = [];
-                for (let i = 0; i < normalFaders.length; i++) {
-                    let range = normalFaders[i];
-                    normalFaderValues.push(range.value);
-                    if (i == normalFaders.length - 1) {
+        var normalFaderValues = [];
+        for (let i = 0; i < normalFaders.length; i++) {
+            let range = normalFaders[i];
+            normalFaderValues.push(Number(range.value));
+            if (i == normalFaders.length - 1) {
+                switch (document.querySelector("input[type='radio'][name='specialmode']:checked").value) {
+                    case "none":
                         let sceneValues = getMaxSceneFaderValues();
                         finalValues = [];
                         for (let i = 0; i < sceneValues.length; i++) {
@@ -57,17 +78,18 @@ function update() {
                         }
 
                         sendFaders(
-                            finalValues.map(x => Math.round(x * MASTER.value))
+                            finalValues.map(x => Math.round(x * MASTER.value)),
+                            normalFaderValues
                         )
-                    }
+                        break;
+                    case "BLACKOUT":
+                        sendFaders(state_blackout, normalFaderValues);
+                        break;
+                    case "FLASH":
+                        sendFaders(state_flash, normalFaderValues);
+                        break;
                 }
-                break;
-            case "BLACKOUT":
-                sendFaders(state_blackout);
-                break;
-            case "FLASH":
-                sendFaders(state_flash);
-                break;
+            }
         }
     }
 }
@@ -93,7 +115,7 @@ function getMaxSceneFaderValues() {
 
 var lastState = []
 
-function sendFaders(state) {
+function sendFaders(state, normalFaderValues) {
 
     var sameArray = (lastState.length == state.length) && lastState.every(function (element, index) {
         return element === state[index];
@@ -101,7 +123,14 @@ function sendFaders(state) {
 
     if (!(sameArray)) {
         lastState = state.slice();
-        //socketio shit
+
+        socket.emit("newState", {
+            "state": state,
+            "scenes": scenes,
+            "faderValues": normalFaderValues,
+            "master": MASTER.value
+        });
+
         console.log(state);
         for (let i = 0; i < state.length; i++) {
             normalFadersOUT[i].value = state[i];

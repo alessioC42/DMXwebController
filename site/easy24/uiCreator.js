@@ -1,24 +1,14 @@
 function toggleFullScreen() {
     if (!document.fullscreenElement) {
         if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen().then(() => {
-                document.documentElement.style.zoom = '125%';
-            });
+            document.documentElement.requestFullscreen();
         }
     } else {
         if (document.exitFullscreen) {
-            document.exitFullscreen().then(() => {
-                document.documentElement.style.zoom = '100%';
-            });
+            document.exitFullscreen();
         }
     }
 }
-
-document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
-        document.documentElement.style.zoom = '100%';
-    }
-});
 
 function createCHFaders() {
     let fadercontainer = document.getElementById("faders")

@@ -1,11 +1,20 @@
 {
-    "usepwd": true,
-    "logins": {
-        "username": "passwd"
+    "webserver": {
+        "port": 3000,
+        "usepwd": true,
+        "logins": {
+            "username": "passwd",
+            "foo":"bar",
+            "user2": "12345678"
+        }
     },
     "tinkerforge": {
         "host":"localhost",
         "port": 4223,
-        "uid":"XYZ"
+        "uid":"EGU",
+        "secret": {
+            "use_secret": true,
+            "secret": "example_secret"
+        }
     }
 }

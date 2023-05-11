@@ -3,6 +3,7 @@ const bs5Utils = new Bs5Utils();
 
 let statuselem = document.getElementById("onlinestatus");
 socket.on('connect', () => {
+    socket.emit("register", { "clienttype": "edit" });
     bs5Utils.Snack.show('success', 'connected to server', delay = 1500, dismissible = true);
     statuselem.style.color = "green";
     statuselem.innerHTML = `online &nbsp;<i class="bi bi-ethernet"></i>`;
@@ -180,6 +181,80 @@ function masterToValueInXSecs(secs, value) {
         }
         update();
     }, singleFrameDuration);
+}
+
+function downloadObjectAsJson(exportObj, exportName) {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 3));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+function openJSONFile(cb) {
+    var input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e => {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+        reader.onload = readerEvent => {
+            try {
+                var content = readerEvent.target.result;
+                console.log(content);
+                cb(JSON.parse(content));
+                console.log(JSON.parse(content))
+            } catch (err) {
+                console.log(err)
+                bs5Utils.Snack.show('danger', 'this file is not compatible', delay = 1500, dismissible = true);
+            }
+        }
+    }
+
+    input.click();
+}
+
+function getFormattedDate(){
+    let d = new Date();
+    return d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
+}
+
+function exportSettings() {
+    downloadObjectAsJson({
+        board: "easy24",
+        master: Number(MASTER.value),
+        sceneFaders: sceneFaders.map(x => Number(x.value)),
+        normalFaders: normalFaders.map(x => Number(x.value)),
+        scenes: scenes
+
+    }, "DMXexport_typeEASY24_"+getFormattedDate());
+}
+
+function importSettings() {
+    openJSONFile((object)=>{
+        if (!(object.board == "easy24")) {
+            bs5Utils.Snack.show('danger', 'this file is not compatible', delay = 1500, dismissible = true);
+        } else {
+            
+            try {
+                MASTER.value = object.master;
+                for (let i = 0; i < object.sceneFaders.length; i++) {
+                    sceneFaders[i].value = object.sceneFaders[i];
+                }
+                for (let i = 0; i < object.normalFaders.length; i++) {
+                    normalFaders[i].value = object.normalFaders[i];
+                }
+                scenes = object.scenes;
+                update();
+                bs5Utils.Snack.show('success', 'settings imported', delay = 1500, dismissible = true);
+            } catch (err) {
+                bs5Utils.Snack.show('danger', 'this file is not compatible', delay = 1500, dismissible = true);
+            }
+        }
+    })
 }
 
 document.getElementById("fade_out_button").addEventListener("click", () => {

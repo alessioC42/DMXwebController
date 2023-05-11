@@ -16,9 +16,10 @@
             writing-mode: bt-lr;
             /* IE */
             -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
             /* WebKit */
             width: 8px;
-            height: 400px;
+            height: 47vh;
             padding: 0 5px;
         }
 
@@ -29,7 +30,7 @@
 </head>
 
 <body>
-    <h4 class="text-center">DMX - WEB - CONTROLLER</h4>
+    <h5 class="text-center">DMX - WEB - CONTROLLER</h5>
     <div class="container-fluid text-center" id="faders">
         <!--ALL SLIDERS - JS creation-->
     </div>
@@ -37,7 +38,9 @@
     <div class="position-absolute top-0 start-0">
         <div class="btn-group-vertical btn-group-lg text-center" style="margin: 5px;">
             <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sceneEditModal">SCENES</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sceneEditModal"><i class="bi bi-sliders2-vertical"></i>&nbsp;SCENES</button>
+            <button class="btn btn-primary" onclick="exportSettings()"><i class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
+            <button class="btn btn-primary" onclick="importSettings()"><i class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
         </div>
     </div>
 
@@ -64,14 +67,11 @@
             <tbody>
                 <tr>
                     <td>
-                        <textarea style="height: 395px;width: 480px;" class="form-control align-bottom">Notes</textarea>
+                        <textarea style="height: 47vh;width: 480px;" class="form-control align-bottom">Notes</textarea>
                     </td>
                     <td>
                         <table>
                             <tbody>
-                                <tr>
-                                    <br><br><br><br><br><br>
-                                </tr>
                                 <tr>
                                     <td>
                                         <div class="input-group">
@@ -186,6 +186,8 @@
                                                 <option value="5">SCENE 6</option>
                                                 <option value="6">SCENE 7</option>
                                                 <option value="7">SCENE 8</option>
+                                                <option value="8">SCENE 9</option>
+                                                <option value="9">SCENE 10</option>
                                             </select>
                                             <span class="input-group-text"></span>
                                         </div>
@@ -221,7 +223,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js-dark/darkmode.min.js"></script>
 <script src="/bs5utils/Bs5Utils.js"></script>
-<script src="/site/uiCreator.js"></script>
-<script src="/site/script.js" defer></script>
+<script src="/site/easy24/uiCreator.js"></script>
+<script src="/site/easy24/script.js" defer></script>
 
 </html>

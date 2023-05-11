@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html data-bs-color-scheme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/css/bootstrap-blackbox.min.css" rel="stylesheet">
+    <link href="/icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/site/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/site/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/site/icons/favicon-16x16.png">
+    <title>DMXwebController</title>
+    <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 85vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h4 class="text-center">DMXwebController - <i><b>MONITOR</b></i></h4>
+    
+    <div class="position-absolute top-0 end-0">
+        <div class="d-flex align-items-center">
+            <b style="color:red" id="onlinestatus">error! &nbsp;<i class="bi bi-ethernet"></i></b>
+          </div>
+    </div>
+
+    <div class="container-fluid text-center">
+        <table class="table">
+            <tbody>
+                <tr id="tablerow">
+
+                </tr>
+                <tr id="percentrow">
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+<script src="/socketio/socket.io.min.js"></script>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js-dark/darkmode.min.js"></script>
+<script src="/bs5utils/Bs5Utils.js"></script>
+<script src="/site/monitor/script.js" defer></script>
+
+</html>

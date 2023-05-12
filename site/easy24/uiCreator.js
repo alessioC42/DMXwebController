@@ -1,15 +1,3 @@
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-    }
-}
-
 function createCHFaders() {
     let fadercontainer = document.getElementById("faders")
     for (let i = 0; i < 24; i++) {

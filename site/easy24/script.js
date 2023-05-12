@@ -144,6 +144,19 @@ function sendFaders(state) {
     }
 }
 
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+            bs5Utils.Snack.show('info', 'use CTRL +/- to adjust the UI', delay = 1500, dismissible = true);
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            bs5Utils.Snack.show('info', 'use CTRL+ to adjust the UI', delay = 1500, dismissible = true);
+        }
+    }
+}
 
 function loadSceneEditorFaders() {
     let selectedScene = scenes[Number(document.getElementById("selectedSceneEdit").value)];

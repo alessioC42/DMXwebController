@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-bs-color-scheme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/css/bootstrap-blackbox.min.css" rel="stylesheet">
+    <link href="/icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/site/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/site/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/site/icons/favicon-16x16.png">
+    <title>DMXwebController - template</title>
+    <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 47vh;
+            padding: 0 5px;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h5 class="text-center">DMX - WEB - CONTROLLER - <i>template</i></h5>
+
+    <div class="position-absolute top-0 start-0">
+        <div class="btn-group-vertical btn-group-lg text-center" style="margin: 5px;">
+            <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
+            <button class="btn btn-primary" onclick="exportSettings()"><i class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
+            <button class="btn btn-primary" onclick="importSettings()"><i class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
+        </div>
+    </div>
+
+    <div class="position-absolute top-0 end-0">
+        <div class="d-flex align-items-center">
+            <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
+            <a target="_blank" href="https://github.com/alessioC42/DMXwebController" class="ms-3">
+              <h3><i class="bi bi-github"></i></h3>
+            </a>
+          </div>
+    </div>
+</body>
+<script src="/socketio/socket.io.min.js"></script>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js-dark/darkmode.min.js"></script>
+<script src="/bs5utils/Bs5Utils.js"></script>
+<script src="/site/template/script.js" defer></script>
+
+</html>

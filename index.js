@@ -8,7 +8,11 @@ const Tinkerforge = require('tinkerforge');
 
 const config = JSON.parse(fs.readFileSync("config.json"))
 
-var writeFrame = () => { }
+var writeFrame = (frame) => {
+    console.log( "NO OUT: \n"+
+        translateFader(frame)
+    )
+}
 
 var ipcon = new Tinkerforge.IPConnection();
 var dmx = new Tinkerforge.BrickletDMX(config.tinkerforge.uid, ipcon);
@@ -18,6 +22,24 @@ ipcon.connect(config.tinkerforge.host, config.tinkerforge.port,
         console.error('Tinkerforge error: ' + err);
     }
 );
+
+function translateFader(frame) {
+    let newFrame = [];
+    for (let i = 0; i < frame.length; i++) {
+        
+        let newindex = config.translate[String(i)];
+        if (newindex < frame.length) {
+            newFrame.push(frame[newindex]);
+        } else {
+            newFrame.push(frame[i]);
+        }
+        
+        if(i == frame.length-1) {
+            console.log(i)
+            return newFrame
+        }
+    }
+}
 
 if (config.tinkerforge.secret.use_secret) {
     ipcon.setAutoReconnect(false);
@@ -29,14 +51,16 @@ if (config.tinkerforge.secret.use_secret) {
                     console.log('Tinkerforge: Connected by request');
                     dmx.setDMXMode(Tinkerforge.BrickletDMX.DMX_MODE_MASTER);
                     writeFrame = (frame) => {
-                        dmx.writeFrame(frame);
+                        dmx.writeFrame(translateFader(frame));
                         dmx.setStatusLEDConfig(2, (_err) => { });
                     }
+
                     break;
                 case Tinkerforge.IPConnection.CONNECT_REASON_AUTO_RECONNECT:
                     console.log('Tinkerforge: Auto-Reconnected');
                     writeFrame = (frame) => {
-                        dmx.writeFrame(frame);
+                        dmx.writeFrame(translateFader(frame));
+                        dmx.setStatusLEDConfig(2, (_err) => { });
                     }
                     break;
             }

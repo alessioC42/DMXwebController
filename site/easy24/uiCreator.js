@@ -60,7 +60,7 @@ function createSCENEFaders() {
         input.setAttribute("orient", "vertical");
         input.setAttribute("min", "0");
         input.setAttribute("max", "1");
-        input.setAttribute("step", "0.01");
+        input.setAttribute("step", "0.001");
         input.setAttribute("value", "0");
         input.setAttribute("id", `SCENE${i}`);
 

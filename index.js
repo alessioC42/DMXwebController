@@ -41,6 +41,7 @@ function translateFader(frame) {
     }
 }
 
+// based on Tinkerforge example at https://www.tinkerforge.com/en/doc/Software/IPConnection_JavaScript.html
 if (config.tinkerforge.secret.use_secret) {
     ipcon.setAutoReconnect(false);
 
@@ -68,10 +69,8 @@ if (config.tinkerforge.secret.use_secret) {
                 function () {
                     console.log('Tinkerforge: Authentication succeeded');
 
-                    // ...reenable auto reconnect mechanism, as described below...
                     ipcon.setAutoReconnect(true);
 
-                    // ...then trigger Enumerate
                     ipcon.enumerate();
                 },
                 function (error) {

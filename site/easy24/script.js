@@ -196,6 +196,53 @@ function masterToValueInXSecs(secs, value) {
     }, singleFrameDuration);
 }
 
+
+let sceneFaderRangesInProgress = {};
+
+function crossRangeToValuesInXSecs(rangeID_a, rangeID_b, value_a, value_b, secs) {
+    if(rangeID_a == rangeID_b) {
+        bs5Utils.Snack.show('danger', 'error while sliding two faders', delay = 1500, dismissible = true);
+        return;
+    }
+    if (sceneFaderRangesInProgress[rangeID_a] || sceneFaderRangesInProgress[rangeID_b]) return;
+
+    sceneFaderRangesInProgress[rangeID_a] = true;
+    sceneFaderRangesInProgress[rangeID_b] = true;
+
+    let range_a = document.getElementById(rangeID_a);
+    let range_b = document.getElementById(rangeID_b);
+
+    let rangeValue_a = parseFloat(range_a.value);
+    let rangeValue_b = parseFloat(range_b.value);
+
+    let framecount = 42 * secs;
+    let singleFrameDuration = (1000 * secs) / framecount;
+
+    let frameSubtract_a = (rangeValue_a - value_a) / framecount;
+    let frameSubtract_b = (rangeValue_b - value_b) / framecount;
+
+    let a = setInterval(() => {
+        rangeValue_a -= frameSubtract_a;
+        rangeValue_b -= frameSubtract_b;
+
+        range_a.value = rangeValue_a.toFixed(2);
+        range_b.value = rangeValue_b.toFixed(2);
+
+        if (Math.abs(rangeValue_a - value_a) <= 0.01 && Math.abs(rangeValue_b - value_b) <= 0.01) {
+            sceneFaderRangesInProgress[rangeID_a] = false;
+            sceneFaderRangesInProgress[rangeID_b] = false;
+            range_a.value = value_a;
+            range_b.value = value_b;
+            clearInterval(a);
+        }
+        update();
+    }, singleFrameDuration);
+}
+
+
+
+
+
 function downloadObjectAsJson(exportObj, exportName) {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 3));
     var downloadAnchorNode = document.createElement('a');
@@ -230,7 +277,7 @@ function openJSONFile(cb) {
     input.click();
 }
 
-function getFormattedDate(){
+function getFormattedDate() {
     let d = new Date();
     return d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
 }
@@ -243,15 +290,15 @@ function exportSettings() {
         normalFaders: normalFaders.map(x => Number(x.value)),
         scenes: scenes
 
-    }, "DMXexport_typeEASY24_"+getFormattedDate());
+    }, "DMXexport_typeEASY24_" + getFormattedDate());
 }
 
 function importSettings() {
-    openJSONFile((object)=>{
+    openJSONFile((object) => {
         if (!(object.board == "easy24")) {
             bs5Utils.Snack.show('danger', 'this file is not compatible', delay = 1500, dismissible = true);
         } else {
-            
+
             try {
                 MASTER.value = object.master;
                 for (let i = 0; i < object.sceneFaders.length; i++) {
@@ -296,6 +343,16 @@ document.getElementById("fast_change_random_button").addEventListener("click", (
     MASTER.value = Math.random().toFixed(2);
     update();
 });
+
+document.getElementById("cross_fade_button").addEventListener("click", () => {
+    crossRangeToValuesInXSecs(
+        `SCENE${document.getElementById("cross_fade_scene_a").value}`,
+        `SCENE${document.getElementById("cross_fade_scene_b").value}`,
+        document.getElementById("cross_fade_value_scene_a").value / 100,
+        document.getElementById("cross_fade_value_scene_b").value / 100,
+        document.getElementById("cross_fade_secs").value
+    )
+})
 
 $('#sceneEditModal').on('hide.bs.modal', (e) => {
     document.getElementById("instantApplySceneConfig").checked = false;

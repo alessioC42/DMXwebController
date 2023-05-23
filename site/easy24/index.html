@@ -38,9 +38,12 @@
     <div class="position-absolute top-0 start-0">
         <div class="btn-group-vertical btn-group-lg text-center" style="margin: 5px;">
             <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sceneEditModal"><i class="bi bi-sliders2-vertical"></i>&nbsp;SCENES</button>
-            <button class="btn btn-primary" onclick="exportSettings()"><i class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
-            <button class="btn btn-primary" onclick="importSettings()"><i class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sceneEditModal"><i
+                    class="bi bi-sliders2-vertical"></i>&nbsp;SCENES</button>
+            <button class="btn btn-primary" onclick="exportSettings()"><i
+                    class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
+            <button class="btn btn-primary" onclick="importSettings()"><i
+                    class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
         </div>
     </div>
 
@@ -55,9 +58,9 @@
         <div class="d-flex align-items-center">
             <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
             <a target="_blank" href="https://github.com/alessioC42/DMXwebController" class="ms-3">
-              <h3><i class="bi bi-github"></i></h3>
+                <h3><i class="bi bi-github"></i></h3>
             </a>
-          </div>
+        </div>
     </div>
 
     <div class="position-absolute bottom-0 end-0">
@@ -70,87 +73,110 @@
                         <textarea style="height: 47vh;width: 480px;" class="form-control align-bottom">Notes</textarea>
                     </td>
                     <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><b>FADE OUT</b> &nbsp; IN</span>
-                                            <input type="number" id="fade_out_secs" style="width: 80px;"
-                                                class="form-control" min="0.5" step="0.5" value="2">
-                                            <span class="input-group-text">SECS</span>
-                                            <button class="btn btn-primary" id="fade_out_button">EXEC</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><b>FADE IN</b> &nbsp; IN</span>
-                                            <input type="number" id="fade_in_secs" style="width: 80px;"
-                                                class="form-control" min="0.5" step="0.5" value="2">
-                                            <span class="input-group-text">SECS TO</span>
-                                            <input type="number" id="fade_in_percentage" style="width: 80px;" max="100"
-                                                min="0" value="20" class="form-control">
-                                            <span class="input-group-text">%</span>
-                                            <button class="btn btn-primary" id="fade_in_button">EXEC</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
-                                            <input type="number" style="width: 80px;" id="fast_change_0_percentage"
-                                                max="100" min="0" value="25" class="form-control">
-                                            <span class="input-group-text">%</span>
-                                            <button class="btn btn-primary" id="fast_change_0_button">EXEC</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
-                                            <input type="number" id="fast_change_1_percentage" style="width: 80px;"
-                                                max="100" min="0" value="75" class="form-control">
-                                            <span class="input-group-text">%</span>
-                                            <button class="btn btn-primary" id="fast_change_1_button">EXEC</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
-                                            <input value="RANDOM" class="form-control" disabled>
-                                            <span class="input-group-text">%</span>
-                                            <button class="btn btn-primary" id="fast_change_random_button">EXEC</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="input-group">
-                                            <div class="btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
-                                                <label class="btn  btn-secondary">
-                                                    <input type="radio" onclick="update()" name="specialmode" id="option1_off" autocomplete="off" value="none"
-                                                        checked> OFF
-                                                </label>
-                                                <label class="btn btn-danger">
-                                                    <input type="radio" onclick="update()" name="specialmode" id="option2_blackout" autocomplete="off" value="BLACKOUT">
-                                                    BLACKOUT
-                                                </label>
-                                                <label class="btn btn-light">
-                                                    <input type="radio" onclick="update()" name="specialmode" id="option3_flash" autocomplete="off" value="FLASH">
-                                                    FLASH
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="card">
+                            <div class="card-body container-fluid">
+                                <!--CROSS FADE-->
+                                <div class="input-group">
+                                    <span class="input-group-text"><b>CROSS FADE</b> &nbsp; IN </span>
+                                    <input class="form-control" type="number" id="cross_fade_secs">
+                                    <span class="input-group-text">SECS</span>
+                                    <button class="btn btn-primary" id="cross_fade_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">SCENE</span>
+                                    <select class="form-select" id="cross_fade_scene_a">
+                                        <option value="0">1</option>
+                                        <option value="1">2</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">8</option>
+                                        <option value="8">9</option>
+                                        <option value="9">10</option>
+                                    </select>
+                                    <span class="input-group-text">TO</span>
+                                    <input class="form-control" type="number" id="cross_fade_value_scene_a" min="0" max="100">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">SCENE</span>
+                                    <select class="form-select"  id="cross_fade_scene_b">
+                                        <option value="0">1</option>
+                                        <option value="1">2</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">8</option>
+                                        <option value="8">9</option>
+                                        <option value="9">10</option>
+                                    </select>
+                                    <span class="input-group-text">TO</span>
+                                    <input class="form-control" type="number" id="cross_fade_value_scene_b" min="0" max="100">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <!--END CROSS FADE-->
+
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text"><b>FADE OUT</b> &nbsp; IN</span>
+                                    <input type="number" id="fade_out_secs" style="width: 80px;" class="form-control"
+                                        min="0.5" step="0.5" value="2">
+                                    <span class="input-group-text">SECS</span>
+                                    <button class="btn btn-primary" id="fade_out_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FADE IN</b> &nbsp; IN</span>
+                                    <input type="number" id="fade_in_secs" style="width: 80px;" class="form-control"
+                                        min="0.5" step="0.5" value="2">
+                                    <span class="input-group-text">SECS TO</span>
+                                    <input type="number" id="fade_in_percentage" style="width: 80px;" max="100" min="0"
+                                        value="20" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fade_in_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input type="number" style="width: 80px;" id="fast_change_0_percentage" max="100"
+                                        min="0" value="25" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_0_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input type="number" id="fast_change_1_percentage" style="width: 80px;" max="100"
+                                        min="0" value="75" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_1_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input value="RANDOM" class="form-control" disabled>
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_random_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <div class="btn-group btn-group-lg btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn  btn-secondary">
+                                            <input type="radio" onclick="update()" name="specialmode" id="option1_off"
+                                                autocomplete="off" value="none" checked> OFF
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" onclick="update()" name="specialmode"
+                                                id="option2_blackout" autocomplete="off" value="BLACKOUT">
+                                            BLACKOUT
+                                        </label>
+                                        <label class="btn btn-light">
+                                            <input type="radio" onclick="update()" name="specialmode" id="option3_flash"
+                                                autocomplete="off" value="FLASH">
+                                            FLASH
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                     <td>
                         <input type="range" class="input-range" orient="vertical" min="0" max="1" value="0" step="0.001"
@@ -176,7 +202,7 @@
                                 <tr>
                                     <td>
                                         <div class="input-group">
-                                            <select class="form-select" aria-label="Default select example"
+                                            <select class="form-select" 
                                                 id="selectedSceneEdit" onchange="loadSceneEditorFaders();update()">
                                                 <option value="0">SCENE 1</option>
                                                 <option value="1">SCENE 2</option>

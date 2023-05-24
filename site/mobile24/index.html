@@ -18,72 +18,69 @@
             -webkit-appearance: slider-vertical;
             appearance: slider-vertical;
             /* WebKit */
-            width: 8px;
-            height: 65vh;
-            margin-right: 20px;
+            width: 10px;
+            height: 85%;
         }
 
         body {
             overflow: hidden;
         }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .half-up {
+            height: 90%;
+        }
+        .half-down {
+            height: 12%;
+        }
+
+        i {
+            font-size: larger;
+        }
     </style>
 </head>
 
 <body>
-    <h5 class="text-center">DMXwebController</h5>
+    <div class="container-fluid h-100">
+        <div class="row half-up">
+            <div class="col d-flex flex-nowrap overflow-auto" id="faders">
 
-    <div class="position-absolute top-0 start-0">
-        <button onclick="toggleFullScreen()" class="btn btn-sm btn-primary">FS</button>
-    </div>
+            </div>
+        </div>
+        <div class="row half-down">
+            <div class="col text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <input type="range" style="width:95%" id="master" min="0" max="1" step="0.001" value="0">
+                    </div>
+                </div>
 
-    <div class="position-absolute top-0 end-0">
-        <div class="d-flex align-items-center">
-            <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
-            <a target="_blank" href="https://github.com/alessioC42/DMXwebController" class="ms-3">
-              <h3><i class="bi bi-github"></i></h3>
-            </a>
-          </div>
-    </div>
-    <div class="fixed-bottom">
-        <div class="card">
-            
-            <div class="card-body">
-                <h5 class="card-title">MASTER</h5>
-                <input class="form-range" type="range">
+
             </div>
         </div>
     </div>
-    <div class="container-fluid d-flex flex-nowrap overflow-auto">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
-        <input type="range" orient="vertical">
+
+    <div class="position-absolute bottom-0 start-0">
+        <button onclick="toggleFullScreen()" class="btn btn-sm btn-primary"><i
+                class="bi bi-arrows-fullscreen"></i></button>
     </div>
+
+    <div class="position-absolute bottom-0 end-0">
+        <div class="d-flex align-items-center">
+            <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
+        </div>
+    </div>
+
+
 </body>
 <script src="/socketio/socket.io.min.js"></script>
 <script src="/jquery/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js-dark/darkmode.min.js"></script>
 <script src="/bs5utils/Bs5Utils.js"></script>
-<script src="/site/template/script.js" defer></script>
+<script src="/site/mobile24/script.js" defer></script>
 
 </html>

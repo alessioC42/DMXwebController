@@ -35,7 +35,6 @@ function translateFader(frame) {
         }
         
         if(i == frame.length-1) {
-            console.log(i)
             return newFrame
         }
     }
@@ -150,7 +149,7 @@ if (config.webserver.usepwd) {
 
 
 app.get("/", (_req, res) => {
-    res.sendFile(__dirname + "/site/easy24/index.html");
+    res.sendFile(__dirname + "/site/selectUI/index.html");
 });
 
 app.get("/site/*", (req, res) => {

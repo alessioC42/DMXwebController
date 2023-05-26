@@ -15,17 +15,18 @@ A simple web environment to simulate a lighting console and connect it to a Thin
 - export / import of settings files
 - seperate monitor view
 
-## planed features
+## planed UI interfaces
 
-- random scene generator
-- copy scenes
-- select between multiple UI's
-  - mobile
-  - complex
-  - rgb
-  - modular
-  - easy24 (current only option)
-- scalable to use 512 channels instead of 24
+
+- [x] easy24
+  - [ ] random scene generator
+  - [ ] copy scenes
+- [x] mobile
+- [ ] esay512
+  - A easy24 clone scalable to use all 512 channels instead of 24
+- [ ] complex
+- [ ] rgb
+- [ ] modular
 
 
 ## libs / frameworks
@@ -42,9 +43,8 @@ A simple web environment to simulate a lighting console and connect it to a Thin
 
 ## UI screenshots
 
-<a href="https://alessioc42.github.io/DMXwebController/site/">test early version of the UI</a>
-
-<img src="screenshots/screenshot1_chromium.png">
 <img src="screenshots/screenshot1_firefox.png">
-<img src="screenshots/screenshot2_chromium.png">
 <img src="screenshots/screenshot2_firefox.png">
+<img src="screenshots/Screenshot1_monitor.png">
+<img src="screenshots/Screenshot_20230526-135219_Kiwi Browser.png">
+<img src="screenshots/Screenshot_20230526-135029_Kiwi Browser.png">

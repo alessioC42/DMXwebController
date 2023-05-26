@@ -19,9 +19,10 @@ socket.on('disconnect', () => {
 
 socket.on('newState', (data) => {
     for (let i = 0; i < data.length; i++) {
-        let percentage = Math.round((data[i]/255)*100);
-        document.getElementById("fader"+i).value = data[i];
-        document.getElementById("percentage"+i).innerHTML = percentage+"%";
+        let percentage = Math.round((data[i] / 255) * 100);
+        let paddedPercentage = String(percentage).padStart(3, '0');
+        document.getElementById("fader" + i).value = data[i];
+        document.getElementById("percentage" + i).innerHTML = paddedPercentage + "%";
     }
 });
 

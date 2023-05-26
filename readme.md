@@ -19,15 +19,19 @@ A simple web environment to simulate a lighting console and connect it to a Thin
 
 
 - [x] easy24
+  - [x] different scenes
+  - [x] auto fading/cross fading
+  - [x] scene export/import
   - [ ] random scene generator
   - [ ] copy scenes
 - [x] mobile
-- [ ] esay512
+- [ ] easy512
   - A easy24 clone scalable to use all 512 channels instead of 24
 - [ ] complex
 - [ ] rgb
 - [ ] modular
 
+- [x] monitor disply (24)
 
 ## libs / frameworks
 - <a href="https://github.com/nodejs/node">nodejs</a>

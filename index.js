@@ -96,7 +96,9 @@ io.on('connection', (socket) => {
                 if (sockets[0] == socket) {
                 
                 let newFrame = translateFader(data.state);
-
+                if (process.argv[2] == "debug")  {
+                    console.log("FRAME: "+newFrame)
+                }
                 for (let i = 0; i < newFrame.length; i++) {
                     currentFrame[i] = newFrame[i];
                 }

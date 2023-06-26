@@ -200,7 +200,7 @@ function masterToValueInXSecs(secs, value) {
 let sceneFaderRangesInProgress = {};
 
 function crossRangeToValuesInXSecs(rangeID_a, rangeID_b, value_a, value_b, secs) {
-    if(rangeID_a == rangeID_b) {
+    if (rangeID_a == rangeID_b) {
         bs5Utils.Snack.show('danger', 'error while sliding two faders', delay = 1500, dismissible = true);
         return;
     }
@@ -354,10 +354,34 @@ document.getElementById("cross_fade_button").addEventListener("click", () => {
     )
 })
 
+var flicker_active = false;
+var flicker_init_value = null;
+var flicker_intervall = null;
+var button_flicker_toggle = document.getElementById("button_flicker_toggle")
+button_flicker_toggle.addEventListener("click", () => {
+    if (flicker_active) {
+        clearInterval(flicker_intervall);
+        MASTER.value = flicker_init_value;
+        flicker_init_value = 0;
+        flicker_active = false;
+        button_flicker_toggle.innerText = "FLICKER: OFF"
+    } else {
+        flicker_init_value = MASTER.value;
+        flicker_intervall = setInterval(
+            () => {
+                setTimeout(()=> {MASTER.value = Math.random()},Math.random() * 100);
+                update();
+            }
+            , 100);
+        flicker_active = true;
+        button_flicker_toggle.innerText = "FLICKER: ON"
+    }
+});
+
 $('#sceneEditModal').on('hide.bs.modal', (e) => {
     document.getElementById("instantApplySceneConfig").checked = false;
     update();
-})
+});
 
 $('#sceneEditModal').on('show.bs.modal', (e) => {
     document.getElementById("instantApplySceneConfig").checked = false;

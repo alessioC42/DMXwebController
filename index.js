@@ -131,7 +131,8 @@ app.use('/js-dark', express.static(__dirname + '/node_modules/bootstrap-dark-5/d
 app.use('/icons', express.static(__dirname + '/node_modules/bootstrap-icons/font'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/socketio', express.static(__dirname + '/node_modules/socket.io-client/dist'));
-app.use('/bs5utils', express.static(__dirname + '/node_modules/bs5-utils/dist/js/'));
+app.use('/bs5utils', express.static(__dirname + '/node_modules/bs5-utils/dist/js'));
+app.use('/codemirror', express.static(__dirname + '/node_modules/codemirror/dist'));
 if (config.webserver.usepwd) {
     app.use(basicAuth({
         users: config.webserver.logins,

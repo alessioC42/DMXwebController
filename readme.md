@@ -25,6 +25,8 @@ A simple web environment to simulate a lighting console and connect it to a Thin
   - [ ] random scene generator
   - [ ] copy scenes
 - [x] mobile
+- [ ] scriptUI
+  - A script based client for effect automation and easy procedure/effect programming <i>(currently working on)</i>
 - [ ] easy512
   - A easy24 clone scalable to use all 512 channels instead of 24
 - [ ] complex

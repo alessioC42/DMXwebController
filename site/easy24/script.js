@@ -364,7 +364,8 @@ button_flicker_toggle.addEventListener("click", () => {
         MASTER.value = flicker_init_value;
         flicker_init_value = 0;
         flicker_active = false;
-        button_flicker_toggle.innerText = "FLICKER: OFF"
+        button_flicker_toggle.innerText = "FLICKER: OFF";
+        update();
     } else {
         flicker_init_value = MASTER.value;
         flicker_intervall = setInterval(

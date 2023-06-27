@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html data-bs-color-scheme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/css/bootstrap-blackbox.min.css" rel="stylesheet">
+    <link href="/icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/site/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/site/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/site/icons/favicon-16x16.png">
+    <title>DMXwebController - scriptUI</title>
+    <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 35vh;
+            padding: 0 10px;
+        }
+
+        #faders {
+      height: 40vh; /* Ändern Sie die Höhe nach Bedarf */
+      overflow-x: scroll;
+    }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h5 class="text-center">DMXwebController - <i>scriptUI</i></h5>
+    <br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <textarea class="form-control" rows="20"></textarea>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        some monitor here 
+                                    </h5>
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        script controls here  
+                                    </h5>
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">scenes</h5>
+                        <div class="input-group" style="margin: 3px;">
+                            <input type="number" class="form-control">
+                        </div>
+                        <div id="faders" class="d-flex flex-row">
+                            <div><input type="range" orient="vertical"><br>0&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>1&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>2&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>3&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>4&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>5&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>6&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>7&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>8&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>9&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>10&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>11&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>12&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>13&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>14&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>15&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>16&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>17&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>18&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>19&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>20&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>21&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>22&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>23&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>24&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>25&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>26&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>27&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>28&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>29&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>30&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>31&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>32&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>33&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>34&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>35&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>36&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>37&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>38&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>39&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>40&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>41&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>42&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>43&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>44&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>45&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>46&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>47&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>48&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>49&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>50&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>51&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>52&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>53&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>54&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>55&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>56&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>57&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>58&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>59&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>60&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>61&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>62&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>63&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>64&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>65&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>66&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>67&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>68&nbsp;</div>
+                            <div><input type="range" orient="vertical"><br>69&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="position-absolute top-0 start-0">
+        <div class="btn-group" style="margin: 5px;">
+            <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
+            <button class="btn btn-primary" onclick="exportSettings()"><i
+                    class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
+            <button class="btn btn-primary" onclick="importSettings()"><i
+                    class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
+            <button class="btn btn-secondary" disabled></button>
+            <button class="btn btn-danger">BLACKOUT</button>
+            <button class="btn btn-light">FLASH</button>
+        </div>
+    </div>
+
+    <div class="position-absolute top-0 end-0">
+        <div class="d-flex align-items-center">
+            <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
+            <a target="_blank" href="https://github.com/alessioC42/DMXwebController" class="ms-3">
+                <h3><i class="bi bi-github"></i></h3>
+            </a>
+        </div>
+    </div>
+
+</body>
+<script src="/socketio/socket.io.min.js"></script>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js-dark/darkmode.min.js"></script>
+<script src="/bs5utils/Bs5Utils.js"></script>
+<script src="/site/scriptUI/script.js" defer></script>
+
+</html>

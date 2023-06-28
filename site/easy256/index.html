@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html data-bs-color-scheme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/css/bootstrap-blackbox.min.css" rel="stylesheet">
+    <link href="/icons/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/site/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/site/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/site/icons/favicon-16x16.png">
+    <title>DMXwebController - e24</title>
+    <style>
+        input[type=range][orient=vertical] {
+            writing-mode: bt-lr;
+            /* IE */
+            -webkit-appearance: slider-vertical;
+            appearance: slider-vertical;
+            /* WebKit */
+            width: 8px;
+            height: 43vh;
+            padding: 0 5px;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h5 class="text-center">DMXwebController - <i>easy256</i></h5><br>
+    <div class="container-fluid text-center ">
+        <div class="d-flex flex-nowrap overflow-auto" id="faders">
+
+        </div>
+        <!--ALL SLIDERS - JS creation-->
+    </div>
+
+    <div class="position-absolute top-0 start-0">
+        <div class="btn-group text-center" style="margin: 5px;">
+            <button class="btn btn-primary" onclick="toggleFullScreen()">FULLSCREEN</button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sceneEditModal"><i
+                    class="bi bi-sliders2-vertical"></i>&nbsp;SCENES</button>
+            <button class="btn btn-primary" onclick="exportSettings()"><i
+                    class="bi bi-file-arrow-down"></i>&nbsp;EXPORT</button>
+            <button class="btn btn-primary" onclick="importSettings()"><i
+                    class="bi bi-file-arrow-up"></i>&nbsp;IMPORT</button>
+        </div>
+    </div>
+
+    <div class="position-absolute bottom-0 start-0">
+        <!--BOTTOM LEFT-->
+        <div class="container-fluid" id="faders_scenes">
+
+        </div>
+    </div>
+
+    <div class="position-absolute top-0 end-0">
+        <div class="d-flex align-items-center">
+            <b style="color:darkorange" id="onlinestatus">reserved &nbsp;<i class="bi bi-ethernet"></i></b>
+            <a target="_blank" href="https://github.com/alessioC42/DMXwebController" class="ms-3">
+                <h3><i class="bi bi-github"></i></h3>
+            </a>
+        </div>
+    </div>
+
+    <div class="position-absolute bottom-0 end-0 m-2">
+        <!--BOTTOM RIGHT-->
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="card">
+                            <div class="card-body container-fluid">
+                                <!--CROSS FADE-->
+                                <div class="input-group">
+                                    <span class="input-group-text"><b>CROSS FADE</b> &nbsp; IN </span>
+                                    <input class="form-control" type="number" id="cross_fade_secs">
+                                    <span class="input-group-text">SECS</span>
+                                    <button class="btn btn-primary" id="cross_fade_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">SCENE</span>
+                                    <select class="form-select" id="cross_fade_scene_a">
+                                        <option value="0">1</option>
+                                        <option value="1">2</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">8</option>
+                                        <option value="8">9</option>
+                                        <option value="9">10</option>
+                                    </select>
+                                    <span class="input-group-text">TO</span>
+                                    <input class="form-control" type="number" id="cross_fade_value_scene_a" min="0" max="100">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text">SCENE</span>
+                                    <select class="form-select"  id="cross_fade_scene_b">
+                                        <option value="0">1</option>
+                                        <option value="1">2</option>
+                                        <option value="2">3</option>
+                                        <option value="3">4</option>
+                                        <option value="4">5</option>
+                                        <option value="5">6</option>
+                                        <option value="6">7</option>
+                                        <option value="7">8</option>
+                                        <option value="8">9</option>
+                                        <option value="9">10</option>
+                                    </select>
+                                    <span class="input-group-text">TO</span>
+                                    <input class="form-control" type="number" id="cross_fade_value_scene_b" min="0" max="100">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <!--END CROSS FADE-->
+
+                                <div class="input-group mt-2">
+                                    <span class="input-group-text"><b>FADE OUT</b> &nbsp; IN</span>
+                                    <input type="number" id="fade_out_secs" style="width: 80px;" class="form-control"
+                                        min="0.5" step="0.5" value="2">
+                                    <span class="input-group-text">SECS</span>
+                                    <button class="btn btn-primary" id="fade_out_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FADE IN</b> &nbsp; IN</span>
+                                    <input type="number" id="fade_in_secs" style="width: 80px;" class="form-control"
+                                        min="0.5" step="0.5" value="2">
+                                    <span class="input-group-text">SECS TO</span>
+                                    <input type="number" id="fade_in_percentage" style="width: 80px;" max="100" min="0"
+                                        value="20" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fade_in_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input type="number" style="width: 80px;" id="fast_change_0_percentage" max="100"
+                                        min="0" value="25" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_0_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input type="number" id="fast_change_1_percentage" style="width: 80px;" max="100"
+                                        min="0" value="75" class="form-control">
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_1_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <span class="input-group-text"><b>FAST CHANGE</b> &nbsp; TO</span>
+                                    <input value="RANDOM" class="form-control" disabled>
+                                    <span class="input-group-text">%</span>
+                                    <button class="btn btn-primary" id="fast_change_random_button">EXEC</button>
+                                </div>
+                                <div class="input-group mt-1">
+                                    <div class="btn-group btn-group-lg btn-group-toggle mr-2" data-toggle="buttons">
+                                        <label class="btn  btn-secondary">
+                                            <input type="radio" onclick="update()" name="specialmode" id="option1_off"
+                                                autocomplete="off" value="none" checked> OFF
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" onclick="update()" name="specialmode"
+                                                id="option2_blackout" autocomplete="off" value="BLACKOUT">
+                                            BLACKOUT
+                                        </label>
+                                        <label class="btn btn-light">
+                                            <input type="radio" onclick="update()" name="specialmode" id="option3_flash"
+                                                autocomplete="off" value="FLASH">
+                                            FLASH
+                                        </label>
+                                    </div>
+                                    <button id="button_flicker_toggle" class="btn btn-primary ms-1">FLICKER: OFF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="range" class="input-range ml-5" orient="vertical" min="0" max="1" value="0" step="0.001"
+                            id="fader_master">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="sceneEditModal" tabindex="-1" aria-labelledby="sceneEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="sceneEditModalLabel">SCENE CONFIGURATION</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="input-group">
+                                            <select class="form-select" 
+                                                id="selectedSceneEdit" onchange="loadSceneEditorFaders();update()">
+                                                <option value="0">SCENE 1</option>
+                                                <option value="1">SCENE 2</option>
+                                                <option value="2">SCENE 3</option>
+                                                <option value="3">SCENE 4</option>
+                                                <option value="4">SCENE 5</option>
+                                                <option value="5">SCENE 6</option>
+                                                <option value="6">SCENE 7</option>
+                                                <option value="7">SCENE 8</option>
+                                                <option value="8">SCENE 9</option>
+                                                <option value="9">SCENE 10</option>
+                                            </select>
+                                            <span class="input-group-text"></span>
+                                        </div>
+                                    </td>
+                                    &nbsp;&nbsp;
+                                    <td>
+                                        <div class="form-check" style="padding-right: 3px;">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="instantApplySceneConfig" onchange="update()">
+                                            <label class="form-check-label" for="instantApplySceneConfig">
+                                                INSTANT UPDATE (BYPASS MASTER)
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                    <br>
+                    <div class="d-flex flex-nowrap overflow-auto" id="sceneConfig_Faders">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/socketio/socket.io.min.js"></script>
+<script src="/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js-dark/darkmode.min.js"></script>
+<script src="/bs5utils/Bs5Utils.js"></script>
+<script src="/site/easy256/uiCreator.js"></script>
+<script src="/site/easy256/script.js" defer></script>
+
+</html>

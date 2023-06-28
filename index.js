@@ -8,7 +8,7 @@ const Tinkerforge = require('tinkerforge');
 
 const config = JSON.parse(fs.readFileSync("config.json"));
 
-var currentFrame = Array(config.ch_count).fill(0);;
+var currentFrame = Array(config.ch_count).fill(0);
 
 
 var ipcon = new Tinkerforge.IPConnection();

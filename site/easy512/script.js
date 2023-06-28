@@ -244,7 +244,7 @@ function crossRangeToValuesInXSecs(rangeID_a, rangeID_b, value_a, value_b, secs)
 
 
 function downloadObjectAsJson(exportObj, exportName) {
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 3));
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null));
     var downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download", exportName + ".json");

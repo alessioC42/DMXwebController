@@ -284,18 +284,18 @@ function getFormattedDate() {
 
 function exportSettings() {
     downloadObjectAsJson({
-        board: "easy512",
+        board: "easy128",
         master: Number(MASTER.value),
         sceneFaders: sceneFaders.map(x => Number(x.value)),
         normalFaders: normalFaders.map(x => Number(x.value)),
         scenes: scenes
 
-    }, "DMXexport_typeeasy512_" + getFormattedDate());
+    }, "DMXexport_typeeasy128_" + getFormattedDate());
 }
 
 function importSettings() {
     openJSONFile((object) => {
-        if (!(object.board == "easy512")) {
+        if (!(object.board == "easy128")) {
             bs5Utils.Snack.show('danger', 'this file is not compatible', delay = 1500, dismissible = true);
         } else {
 
